@@ -1,0 +1,1 @@
+%~dp0/protocdir.exe ./client.json ./server.json

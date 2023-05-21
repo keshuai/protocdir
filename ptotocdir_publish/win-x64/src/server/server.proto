@@ -1,0 +1,12 @@
+// version
+syntax = "proto3";
+
+// namespace
+package PB.server;
+
+// sample
+message SampleA
+{
+    bytes ip     =   1; // ip
+    int32 port   =   2; // port
+}

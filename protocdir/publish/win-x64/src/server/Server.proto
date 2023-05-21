@@ -1,0 +1,179 @@
+﻿// 版本v3
+syntax = "proto3";
+import "Shared/User.proto";
+import "Shared/Gover.proto";
+import "Shared/Visit.proto";
+import "Shared/Common.proto";
+import "Shared/Flats.proto";
+import "Shared/Letter.proto";
+import "Shared/Shell.proto";
+import "Shared/Message.proto";
+import "Shared/Fight.proto";
+import "Shared/Seven.proto";
+import "Shared/Outside.proto";
+import "Shared/Archives.proto";
+import "Shared/Shadow.proto";
+import "Shared/Achievement.proto";
+import "Shared/Prologue.proto";
+
+// 命名空间
+package ServerPb;
+
+// 用户数据
+message UserPb
+{
+    int64                                       userId                          =   1;
+    string                                      accessToken                     =   2;
+    string                                      name                            =   3;  // 名称
+
+    int32                                       icon                            =   4;  // 头像
+    int32                                       iconFrame                       =   5;  // 头像框
+    int32                                       exp                             =   6;  // 经验
+    string                                      sign                            =   7;  // 签名
+    
+    int32                                       goldCoin                        =   8;  // 碎金 币   -> 对应人名币
+    int32                                       metheusCoin                     =   9;  // 米修斯币  -> 游戏产出
+    int32                                       strengthCoin                    =   10; // 体力 币
+
+    int64                                       birthLocalTicks                 =   97;  // 出生时间
+    int32                                       gender                          =   98;  // 性别 0双性1男2女
+
+    repeated ProtocolData.Card                  cards                           =   11; // 卡列表
+    repeated ProtocolData.Item                  items                           =   12; // 道具列表
+    repeated int32                              showCards                       =   13; // 对外展示的卡
+    repeated ProtocolData.RandomCardFreeTime    randomCardFreeTime              =   14; // 下次抽卡的免费时间
+    int32                                       randomCardMegaExp               =   15; // 超级抽卡经验
+    ProtocolData.MissionData                    missionData                     =   16; // Mission关卡数据
+    ProtocolData.UserFightTeams                 userFightTeams                  =   17; // 战斗编组
+    repeated ProtocolData.Mail                  mails                           =   18; // 邮件列表
+    int32                                       numOfMailProduced               =   19; // 该玩家产生的邮件的总个数, 用于生成邮件id
+    ProtocolData.GameTaskList                   gameTaskList                    =   20; // 任务列表
+    ProtocolData.UserPvpInfo                    userPvpInfo                     =   21; // 用户的pvp信息
+    ProtocolData.BuildPlanData                  buildPlanData                   =   22; // 修缮计划
+    ProtocolData.FriendList                     friendList                      =   23; // 好友列表
+    RandomCardData                              randomCardData                  =   24; // 抽卡数据
+    int32                                       currentDay                      =   25; // 当天
+    int32                                       currentDayPlaySeconds           =   26; // 当天游戏时常
+    int64                                       lastRecoveryStrenthUtcTicks     =   27; // 上一次恢复体力的时间
+    ProtocolData.BuildPlanRData                 buildPlanRData                  =   28; // solo
+    ProtocolData.GovernMentInfo                 governMentInfo                  =   30; // 管理局
+    repeated ProtocolData.HeroData              heros                           =   31; // 男主数据列表
+    int64                                       lastBeginItemsTime              =   32; // 最后一次添加初始道具时间
+    ProtocolData.FlatsInfo                      flats                           =   33;  // 南石公寓
+    ProtocolData.LetterList                     letter                          =   34;  // 信使
+    repeated ProtocolData.Shell                 shells                          =   35;  // 贝珥表
+    repeated ProtocolData.CardReward            cardRewards                     =   36;  // 调令礼物列表
+    ProtocolData.RotatingTower                  rotatingTower                   =   37;  // 旋塔器
+    repeated ProtocolData.EquipItem             equipItems                      =   38;  // 装备列表 （家具、宠物装扮）
+    ProtocolData.SevenInfo                      sevenInfo                       =   39;  // 七天信息 （好礼、任务）
+    int32                                       homeCoin                        =   40;  // 家园币
+    repeated ProtocolData.OutsideChapter        outsideChapter                  =   41;  // 城外探索
+    repeated int32                              outsideCard                     =   42;  // 城外探索调令任务ID集合
+    repeated int32                              cardBreaks                      =   43;  // 突破[1000036,1000037]
+    bool                                        isOnLine                        =   44;  // true 代表在线 false 代表离线
+    int64                                       lastActiveTicks                 =   45;  // 最后活跃时间
+    int32                                       baseScore                       =   46;  // 基地评分
+    ProtocolData.Archives                       archives                        =   47;  // 档案馆
+    ProtocolData.ShadowData                     shadow                          =   48;  // 迷影副本
+    int32                                       shadowVolume                    =   49;  // 迷影卷
+    int64                                       lastRecoveryVolumeUtcTicks      =   50;  // 上一次恢复迷影卷的时间
+    ProtocolData.Achievement                    achievement                     =   51;  // 成就信息
+    ProtocolData.Prologue                       prologue                        =   52;  // 序章信息
+    repeated ProtocolData.ExpiredItem           expiredItem                     =   53;  // 带过期时间道具
+    ProtocolData.CustomizeData                  customize                       =   54;  // 自定义主界面
+    int32                                       mainLineType                    =   55;  // 主线类型
+    int64                                       ideaFinishTicks                 =   56;  // 意见完成时间（cd冷却完成时间）
+    string                                      childhoodName                   =   57;  // 小名
+    int64                                       lastBirthTicks                  =   58;  // 最后更改生日时间（一年只能修改一次）
+
+    repeated ProtocolData.UserPref              userPrefs                       =   99; // 用户持久化数据
+}
+
+// 抽卡的数据
+message RandomCardData
+{
+    int32                                       megaExp                 =   1; // 超级抽卡经验值
+    int32                                       currentDay              =   2; // 当前天
+    int32                                       currentDayTotalCount    =   3; // 当前天总次数
+    repeated RandomCardRowCounter               rowCounters             =   4; // 每行单独计数
+}
+
+// 抽卡行计数
+message RandomCardRowCounter
+{
+    int32                                       rowId                   =   1; // 抽卡id
+    int32                                       totalCount              =   2; // 抽卡总数
+    sfixed64                                    nextFreeUtcTicks        =   3; // 下次免费的时间
+    repeated RandomCardLevelCounter             levelCounters           =   4; //  每个档位单独计数
+}
+
+// 抽卡档位计数
+message RandomCardLevelCounter
+{
+    int32                                       rowId                   =   1; // 抽卡id
+    int32                                       levelIndex              =   2; // 档位数组索引
+    int32                                       count                   =   3; // 当前档位的计数
+}
+
+
+message GmBagItemOpt
+{
+    int32                   optType           =   1; // 0 修改数量 1 添加数量 2 删除数量
+    int32                   itemId            =   2;
+    int32                   itemCount         =   3; 
+}
+
+message GmBagItemOptList
+{
+    int64                   userId      =   1;
+    repeated GmBagItemOpt   opts        =   2;
+}
+
+// 邮件信息
+message MailInfo
+{
+    int64                       userId               =   1;  // 用户ID
+    int32                       itemId               =   2;  // 道具编号
+    int32                       itemCount            =   3;  // 道具数量
+    int32                       mailId               =   4;  // 指定邮件ID
+    int32                       MailType             =   5;  // 邮件类型
+    string                      mailMsg              =   6;  // 自定义邮件内容
+    int32                       mailCount            =   7;  // 邮件数量
+    bool                        isCustomMail         =   8;  // true 自定义邮件 false 代表非自定义
+}
+
+// 操作列表
+message GmOptList
+{
+    int64                       userId              =   1;  // 用户ID
+    repeated GmOpt              opts                =   2;  // 用户数据
+}
+
+// 操作信息
+message GmOpt
+{
+    int32                       optType             =   1; // 0 添加数量 1 删除数量
+    int32                       commonId            =   2; // 业务ID
+}
+
+// 自定义纸条列表
+message GmCustomStripOptList
+{
+    int64                       userId              =   1;  // 用户ID
+    repeated GmCustomStripOpt   opts                =   2;  // 用户数据
+}
+
+// 自定义字条用户数据信息
+message GmCustomStripOpt
+{
+    int32                       optType             =   1; // 0 添加数量 1 删除数量
+    int32                       sheetId             =   2; // 字条id
+    int32                       colorId             =   3; // 颜色ID
+    int32                       styleId             =   4; // 样式ID
+    string                      des                 =   5; // 字条内容
+
+
+}
+
+
+

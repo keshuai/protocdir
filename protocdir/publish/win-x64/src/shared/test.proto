@@ -1,0 +1,12 @@
+// 版本v3
+syntax = "proto3";
+
+// 命名空间
+package PB.Shared;
+
+// 结构
+message SampleMessage
+{
+    string name = 1;
+    int32  age  =2;
+}

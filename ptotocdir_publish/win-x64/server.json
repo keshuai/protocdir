@@ -1,0 +1,15 @@
+{
+  "name" : "server",
+  
+  "input" : [
+    "src/shared",
+    "src/server"
+  ],
+  
+  "output" : [
+    {
+      "language" : "csharp",
+      "path" : "csharp_out/server"
+    }
+  ]
+}

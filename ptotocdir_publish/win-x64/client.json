@@ -1,0 +1,15 @@
+{
+  "name" : "client",
+  
+  "input" : [
+    "src/shared",
+    "src/client"
+  ],
+  
+  "output" : [
+    {
+      "language" : "csharp",
+      "path" : "csharp_out/client"
+    }
+  ]
+}

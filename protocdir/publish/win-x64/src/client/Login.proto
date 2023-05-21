@@ -1,0 +1,13 @@
+// 版本v3
+syntax = "proto3";
+
+// 命名空间
+package ProtocolData.Login;
+
+// 道具
+message GameServiceAddress
+{
+    bytes ip     =   1; // ip
+    int32 port   =   2; // port
+    int32 loopId =   3; // loopId
+}

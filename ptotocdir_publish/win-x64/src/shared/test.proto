@@ -1,0 +1,12 @@
+// version
+syntax = "proto3";
+
+// namespace
+package PB.shared;
+
+// sample
+message SampleMessage
+{
+    string name = 1;
+    int32  age  =2;
+}
