@@ -44,6 +44,6 @@ server.json:
 
 build command:
 
-```json
+```bat
 protocdir.exe clien.json server.json
 ```
