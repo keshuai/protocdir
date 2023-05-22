@@ -19,15 +19,25 @@ public class ProtoBuilder
         Console.WriteLine($"Start build {build.name}:");
 
         // check input
-        var inputs = new string[build.input.Length];
-        for (int i = 0; i < inputs.Length; i++)
+        var inputs = new List<string>(build.input.Length);
+        for (int i = 0; i < build.input.Length; i++)
         {
-            inputs[i] = Path.Combine(_currentDir, build.input[i]);
+            var inputDir = Path.Combine(_currentDir, build.input[i]);
 
-            if (!Directory.Exists(inputs[i]))
+            if (Directory.Exists(inputDir))
             {
-                Console.WriteLine($"input dir {inputs[i]} not exist");
+                inputs.Add(inputDir);
             }
+            else
+            {
+                Console.WriteLine($"input dir {inputDir} not exist");
+            }
+        }
+
+        if (inputs.Count == 0)
+        {
+            Console.WriteLine($"No valid input dir found");
+            return;
         }
 
         // all out
@@ -35,7 +45,7 @@ public class ProtoBuilder
         {
             var outputPath = Path.Combine(_currentDir, buildOut.path);
             ClearOutputPath(outputPath);
-            ExecuteProtocDirs(inputs, buildOut.language, outputPath);
+            ExecuteProtocDirs(inputs.ToArray(), buildOut.language, outputPath);
         }
         
         Console.WriteLine();

@@ -1,5 +1,9 @@
-The "protoc" command can only compile a single file or a single folder.
-This "protocdir" allows you to compile multiple folders based on a JSON configuration.
+### protocdir:
+
+- The "protoc" command can only compile a single file or a single folder.
+- This "protocdir" allows you to compile multiple folders based on a JSON configuration.
+
+### Config:
 
 client.json:
 
@@ -42,7 +46,7 @@ server.json:
 
 
 
-build command:
+### build command:
 
 ```bat
 protocdir.exe clien.json server.json
