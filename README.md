@@ -1,5 +1,5 @@
 The "protoc" command can only compile a single file or a single folder.
-This protoc allows you to compile multiple folders based on a JSON configuration.
+This "protocdir" allows you to compile multiple folders based on a JSON configuration.
 
 client.json:
 
